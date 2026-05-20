@@ -76,8 +76,8 @@
 
   .nav-links a:hover { color: var(--black); }
 
-  .caamfest2024-item img { transition: transform 0.6s ease; }
-  .caamfest2024-item:hover img { transform: scale(1.03); }
+  .caamfest2024-item img { transition: transform 0.5s ease; transform: scale(1.0); }
+  .caamfest2024-item:hover img { transform: scale(0.5); }
 
   /* ── UNIFIED GRID ── */
   .unified-grid {
@@ -198,6 +198,7 @@
     padding: 1.75rem;
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 2;
   }
 
   .design-item:hover .design-overlay { opacity: 1; }
@@ -592,7 +593,7 @@
 
     <span id="design-nav" style="position:absolute; top:-80px;"></span>
     <!-- Design item 1 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-1.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <img src="caamfest40.webp" alt="CAAMFest 40" style="object-fit: contain; background: #000;">
       <div class="design-overlay">
         <p class="design-overlay-title">CAAMFest 40</p>
@@ -621,8 +622,8 @@
     </div>
 
     <!-- Design item 1b — CAAMFest 2024 -->
-    <div class="grid-item design-item reveal caamfest2024-item" onclick="goToProject('project-1b.html')" style="background: #1a3a1a;">
-      <img src="caamfest2024_hero.gif" alt="CAAMFest 2024" style="object-fit: contain; width:100%; height:100%;">
+    <div class="grid-item design-item reveal caamfest2024-item" onclick="openLightbox(this)" style="background: #1a3a1a;">
+      <img src="caamfest2024_hero.gif" alt="CAAMFest 2024" style="object-fit: contain; width:100%; height:100%; position:absolute; z-index:0;">
       <div class="design-overlay">
         <p class="design-overlay-title">CAAMFest 2024</p>
         <p class="design-overlay-type">Design · Brand Identity</p>
@@ -630,7 +631,7 @@
     </div>
 
     <!-- Design item 2 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-2.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <img src="raw_book.webp" alt="Raw Black Blue">
       <div class="design-overlay">
         <p class="design-overlay-title">Raw Black Blue</p>
@@ -639,9 +640,9 @@
     </div>
 
     <!-- Video item 2 — CAAMFest 2021 Trailer -->
-    <div class="grid-item reveal" onclick="openVideo('1193945404', 'vimeo')">
+    <div class="grid-item reveal" onclick="openVideo('1193945404', 'vimeo')" style="background: #111110;">
       <div class="video-thumb-unified">
-        <img src="CAAMFest_2021.gif" alt="CAAMFest 2021 Trailer">
+        <img src="CAAMFest_2021.gif" alt="CAAMFest 2021 Trailer" style="object-fit: cover; width:100%; height:100%;">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
@@ -655,7 +656,7 @@
     </div>
 
     <!-- Design item 3 — Vincent Chin -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-3.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <img src="vincentchin.webp" alt="Vincent Chin">
       <div class="design-overlay">
         <p class="design-overlay-title">Vincent Chin</p>
@@ -666,7 +667,7 @@
     <!-- Video item 3 — Danny, Danny -->
     <div class="grid-item reveal" onclick="openVideo('1193886458', 'vimeo')" style="aspect-ratio: 4/3;">
       <div class="video-thumb-unified">
-        <img src="dannny.GIF" alt="Danny, Danny" style="object-fit: cover; width:100%; height:100%;">
+        <img src="dannnny.gif" alt="Danny, Danny" style="object-fit: cover; width:100%; height:100%;">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
@@ -680,7 +681,7 @@
     </div>
 
     <!-- Design item 4 — MUMU -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-4.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <img src="mumu_front_final.webp" alt="MUMU">
       <div class="design-overlay">
         <p class="design-overlay-title">MUMU</p>
@@ -689,9 +690,9 @@
     </div>
 
     <!-- Video item 4 — Great Star Theater -->
-    <div class="grid-item reveal" onclick="openVideo('1193929181', 'vimeo')">
+    <div class="grid-item reveal" onclick="openVideo('1193929181', 'vimeo')" style="background: #111110;">
       <div class="video-thumb-unified">
-        <img src="Greatstar.gif" alt="Great Star Theater">
+        <img src="Greatstar.gif" alt="Great Star Theater" style="object-fit: cover; width:100%; height:100%;">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
@@ -705,7 +706,7 @@
     </div>
 
     <!-- Design item 5 — Jasmine Orange -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-5.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <img src="thick_multi_final.webp" alt="Jasmine Orange">
       <div class="design-overlay">
         <p class="design-overlay-title">Jasmine Orange</p>
@@ -714,7 +715,7 @@
     </div>
 
     <!-- Design item 6 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-6.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -726,7 +727,7 @@
     </div>
 
     <!-- Design item 7 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-7.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -757,7 +758,7 @@
     </div>
 
     <!-- Design item 8 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-8.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -769,7 +770,7 @@
     </div>
 
     <!-- Design item 9 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-9.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -781,7 +782,7 @@
     </div>
 
     <!-- Design item 10 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-10.html')">
+    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
