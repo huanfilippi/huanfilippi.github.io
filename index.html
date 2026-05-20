@@ -76,6 +76,9 @@
 
   .nav-links a:hover { color: var(--black); }
 
+  .caamfest2024-item img { transition: transform 0.6s ease; }
+  .caamfest2024-item:hover img { transform: scale(1.03); }
+
   /* ── UNIFIED GRID ── */
   .unified-grid {
     display: grid;
@@ -111,9 +114,12 @@
     inset: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 
   .video-thumb-unified img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -195,6 +201,7 @@
   }
 
   .design-item:hover .design-overlay { opacity: 1; }
+  .grid-item:hover .design-overlay { opacity: 1; }
 
   .design-overlay-title {
     font-family: var(--serif);
@@ -614,8 +621,8 @@
     </div>
 
     <!-- Design item 1b — CAAMFest 2024 -->
-    <div class="grid-item design-item reveal" onclick="goToProject('project-1b.html')">
-      <img src="caamfest2024_hero.gif" alt="CAAMFest 2024" style="object-fit: contain; background: #1a3a1a;">
+    <div class="grid-item design-item reveal caamfest2024-item" onclick="goToProject('project-1b.html')" style="background: #1a3a1a;">
+      <img src="caamfest2024_hero.gif" alt="CAAMFest 2024" style="object-fit: contain; width:100%; height:100%;">
       <div class="design-overlay">
         <p class="design-overlay-title">CAAMFest 2024</p>
         <p class="design-overlay-type">Design · Brand Identity</p>
@@ -634,7 +641,7 @@
     <!-- Video item 2 — CAAMFest 2021 Trailer -->
     <div class="grid-item reveal" onclick="openVideo('1193945404', 'vimeo')">
       <div class="video-thumb-unified">
-        <img src="CAAMFest_2021.gif" alt="CAAMFest 2021 Trailer" style="object-fit: cover; width:100%; height:100%; position:absolute; inset:0;">
+        <img src="CAAMFest_2021.gif" alt="CAAMFest 2021 Trailer">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
@@ -656,18 +663,18 @@
       </div>
     </div>
 
-    <!-- Video item 3 — Great Star Theater -->
-    <div class="grid-item reveal" onclick="openVideo('1193929181', 'vimeo')">
+    <!-- Video item 3 — Danny, Danny -->
+    <div class="grid-item reveal" onclick="openVideo('1193886458', 'vimeo')" style="aspect-ratio: 4/3;">
       <div class="video-thumb-unified">
-        <img src="Greatstar.gif" alt="Great Star Theater" style="object-fit: cover; width:100%; height:100%; position:absolute; inset:0;">
+        <img src="dannny.GIF" alt="Danny, Danny" style="object-fit: cover; width:100%; height:100%;">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
         </div>
         <div class="design-overlay">
-          <p class="design-overlay-title">Great Star Theater</p>
-          <p class="design-overlay-type">Film · Brand Commercial</p>
+          <p class="design-overlay-title">Danny, Danny</p>
+          <p class="design-overlay-type">Film · Short Film</p>
         </div>
       </div>
     </div>
@@ -681,18 +688,18 @@
       </div>
     </div>
 
-    <!-- Video item 4 — Danny, Danny -->
-    <div class="grid-item reveal" onclick="openVideo('1193886458', 'vimeo')" style="aspect-ratio: 4/3;">
+    <!-- Video item 4 — Great Star Theater -->
+    <div class="grid-item reveal" onclick="openVideo('1193929181', 'vimeo')">
       <div class="video-thumb-unified">
-        <img src="dannny.GIF" alt="Danny, Danny" style="object-fit: cover; width:100%; height:100%;">
+        <img src="Greatstar.gif" alt="Great Star Theater">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
         </div>
         <div class="design-overlay">
-          <p class="design-overlay-title">Danny, Danny</p>
-          <p class="design-overlay-type">Film · Short Film</p>
+          <p class="design-overlay-title">Great Star Theater</p>
+          <p class="design-overlay-type">Film · Brand Commercial</p>
         </div>
       </div>
     </div>
