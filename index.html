@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huan Filippi — Graphic Designer & Visual Storyteller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111110;
+    --white: #fafaf8;
+    --gray-light: #f0efeb;
+    --gray-mid: #c8c7c1;
+    --gray-text: #888880;
+    --accent: #76B900;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--gray-mid);
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .nav-name span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gray-text);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* ── UNIFIED GRID ── */
+  .unified-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+  }
+
+  .grid-item {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--gray-light);
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .grid-item:hover img { transform: scale(1.04); }
+
+  .video-thumb-unified {
+    position: absolute;
+    inset: 0;
+  }
+
+  .video-thumb-unified img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .grid-item:hover .video-thumb-unified img { transform: scale(1.04); }
+
+  @media (max-width: 900px) {
+    .unified-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .unified-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 7rem 4rem;
+    border-bottom: 0.5px solid var(--gray-mid);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .section-count {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+  }
+
+  /* ── DESIGN GRID ── */
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+  }
+
+  .design-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--gray-light);
+  }
+
+  .design-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .design-item:hover img { transform: scale(1.04); }
+
+  .design-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(17,17,16,0.82);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .design-item:hover .design-overlay { opacity: 1; }
+
+  .design-overlay-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+  }
+
+  .design-overlay-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+
+  /* Placeholder styling */
+  .placeholder-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--gray-text);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  .placeholder-label svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--gray-mid);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+
+  /* ── VIDEO GRID ── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .video-item { cursor: pointer; }
+
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--gray-light);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .video-item:hover .video-thumb img { transform: scale(1.03); }
+
+  .video-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17,17,16,0.3);
+    transition: background 0.3s;
+  }
+
+  .video-item:hover .video-play { background: rgba(17,17,16,0.5); }
+
+  .play-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .video-item:hover .play-btn {
+    transform: scale(1.08);
+    border-color: #fff;
+  }
+
+  .play-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    margin-left: 3px;
+  }
+
+  .video-meta { padding: 0 0.25rem; }
+
+  .video-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    color: var(--black);
+  }
+
+  .video-type {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-photo {
+    aspect-ratio: 3/4;
+    background: var(--gray-light);
+    overflow: hidden;
+    position: relative;
+    width: 50%;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #555550;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-details {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .about-detail-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .detail-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-text);
+    min-width: 90px;
+  }
+
+  .detail-value { color: var(--black); }
+
+  /* ── CONTACT ── */
+  .contact-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-inner h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-inner p {
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  .contact-email {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .contact-email:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--gray-text);
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,16,0.95);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox img {
+    max-width: 88vw;
+    max-height: 88vh;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── VIDEO MODAL ── */
+  .video-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,16,0.96);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .video-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .video-modal-inner {
+    width: min(900px, 90vw);
+    aspect-ratio: 16/9;
+  }
+
+  .video-modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: var(--sans);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .video-modal-close:hover { opacity: 1; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero, section { padding-left: 2rem; padding-right: 2rem; }
+    .design-grid { grid-template-columns: repeat(2, 1fr); }
+    .video-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem 2rem; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .design-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="/">
+    <span style="font-family: var(--serif); font-size: 2rem; font-weight: 400; letter-spacing: 0.02em; color: var(--black);">Huan Filippi</span>
+    <span style="display:block; font-family: var(--serif); font-style: italic; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.04em; color: var(--black); margin-top: 2px;">Visual Storyteller</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#design-nav">Design</a></li>
+    <li><a href="#film-nav">Film & Video</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+
+<!-- UNIFIED WORK SECTION -->
+<section id="work">
+  <div class="section-header reveal">
+    <h2 class="section-title"></h2>
+  </div>
+
+  <div class="unified-grid">
+
+    <!-- ═══════════════════════════════════════════════
+         DESIGN ITEMS: replace placeholder with your image
+         <img src="your-image.jpg" alt="Project name">
+
+         VIDEO ITEMS: replace YOUTUBE_VIDEO_ID_HERE or
+         VIMEO_VIDEO_ID_HERE with your actual video ID
+         ═══════════════════════════════════════════════ -->
+
+    <span id="design-nav" style="position:absolute; top:-80px;"></span>
+    <!-- Design item 1 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-1.html')">
+      <img src="caamfest40.webp" alt="CAAMFest 40" style="object-fit: contain; background: #000;">
+      <div class="design-overlay">
+        <p class="design-overlay-title">CAAMFest 40</p>
+        <p class="design-overlay-type">Design · Brand Identity</p>
+      </div>
+    </div>
+
+    <span id="film-nav" style="position:absolute; top:-80px;"></span>
+    <!-- Video item 1 — Aftertaste -->
+    <div class="grid-item reveal" onclick="goToProject('aftertaste.html')">
+      <div class="video-thumb-unified">
+        <div class="placeholder-label">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          Add thumbnail
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">Aftertaste</p>
+          <p class="design-overlay-type">Film · Short Documentary</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 2 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-2.html')">
+      <img src="raw_book.webp" alt="Raw Black Blue">
+      <div class="design-overlay">
+        <p class="design-overlay-title">Raw Black Blue</p>
+        <p class="design-overlay-type">Design · Editorial</p>
+      </div>
+    </div>
+
+    <!-- Video item 2 — Cantadora Wine -->
+    <div class="grid-item reveal" onclick="goToProject('cantadora-wine.html')">
+      <div class="video-thumb-unified">
+        <div class="placeholder-label">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          Add thumbnail
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">Cantadora Wine</p>
+          <p class="design-overlay-type">Film · Brand Commercial</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 3 — Vincent Chin -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-3.html')">
+      <img src="vincentchin.webp" alt="Vincent Chin">
+      <div class="design-overlay">
+        <p class="design-overlay-title">Vincent Chin</p>
+        <p class="design-overlay-type">Design · Pitch Deck</p>
+      </div>
+    </div>
+
+    <!-- Video item 3 — Great Star Theater -->
+    <div class="grid-item reveal" onclick="goToProject('great-star-theater.html')">
+      <div class="video-thumb-unified">
+        <div class="placeholder-label">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          Add thumbnail
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">Great Star Theater</p>
+          <p class="design-overlay-type">Film · Brand Commercial</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 4 — MUMU -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-4.html')">
+      <img src="mumu_front_final.webp" alt="MUMU">
+      <div class="design-overlay">
+        <p class="design-overlay-title">MUMU</p>
+        <p class="design-overlay-type">Design · Logo</p>
+      </div>
+    </div>
+
+    <!-- Video item 4 — Danny, Danny -->
+    <div class="grid-item reveal" onclick="goToProject('danny-danny.html')">
+      <div class="video-thumb-unified">
+        <img src="dannny.GIF" alt="Danny, Danny" style="object-fit: cover; width:100%; height:100%;">
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">Danny, Danny</p>
+          <p class="design-overlay-type">Film · Short Film</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 5 — Jasmine Orange -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-5.html')">
+      <img src="thick_multi_final.webp" alt="Jasmine Orange">
+      <div class="design-overlay">
+        <p class="design-overlay-title">Jasmine Orange</p>
+        <p class="design-overlay-type">Design · Logo</p>
+      </div>
+    </div>
+
+    <!-- Design item 6 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-6.html')">
+      <div class="placeholder-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Add image here
+      </div>
+      <div class="design-overlay">
+        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-type">Design · Social Media</p>
+      </div>
+    </div>
+
+    <!-- Video item 5 — The Dish -->
+    <div class="grid-item reveal" onclick="goToProject('the-dish.html')">
+      <div class="video-thumb-unified">
+        <div class="placeholder-label">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          Add thumbnail
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">The Dish</p>
+          <p class="design-overlay-type">Film · Short Documentary Series</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 7 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-7.html')">
+      <div class="placeholder-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Add image here
+      </div>
+      <div class="design-overlay">
+        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-type">Design · Logo Design</p>
+      </div>
+    </div>
+
+    <!-- Video item 6 — Be Here With You -->
+    <div class="grid-item reveal" onclick="goToProject('be-here-with-you.html')">
+      <div class="video-thumb-unified">
+        <div class="placeholder-label">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          Add thumbnail
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="design-overlay">
+          <p class="design-overlay-title">Be Here With You</p>
+          <p class="design-overlay-type">Film · Medical Educational Documentary</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design item 8 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-8.html')">
+      <div class="placeholder-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Add image here
+      </div>
+      <div class="design-overlay">
+        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-type">Design · Pitch Deck</p>
+      </div>
+    </div>
+
+    <!-- Design item 9 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-9.html')">
+      <div class="placeholder-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Add image here
+      </div>
+      <div class="design-overlay">
+        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-type">Design · Motion Graphics</p>
+      </div>
+    </div>
+
+    <!-- Design item 10 -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-10.html')">
+      <div class="placeholder-label">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Add image here
+      </div>
+      <div class="design-overlay">
+        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-type">Design · Typography</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <img src="anny-photo.jpg" alt="Huan Filippi">
+    </div>
+    <div class="about-text reveal">
+      <p>
+        Multidisciplinary graphic designer and visual storyteller with 10+ years crafting brand systems, campaigns, and motion content across print, digital, social, and video.
+      </p>
+      <p>
+        Drawn to work that blends personal and collective memory, every project is an opportunity to translate complex subjects into visuals that resonate emotionally and communicate clearly. Rooted in cultural media and storytelling across identities and communities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Huan Filippi</span>
+  <a href="mailto:huan.a.filippi@gmail.com" style="color: var(--gray-text); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--gray-text)'">huan.a.filippi@gmail.com</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">Close ×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="video-modal">
+  <button class="video-modal-close" onclick="closeVideo()">Close ×</button>
+  <div class="video-modal-inner">
+    <iframe id="video-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+  </div>
+</div>
+
+<script>
+  // Navigate to project page
+  function goToProject(page) {
+    window.location.href = page;
+  }
+
+  // Lightbox
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    if (!img) return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Video modal
+  function openVideo(id, source) {
+    if (!id || id === 'YOUTUBE_VIDEO_ID_HERE') return;
+    const src = source === 'vimeo'
+      ? `https://player.vimeo.com/video/${id}?autoplay=1`
+      : `https://www.youtube.com/embed/${id}?autoplay=1`;
+    document.getElementById('video-iframe').src = src;
+    document.getElementById('video-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideo() {
+    document.getElementById('video-iframe').src = '';
+    document.getElementById('video-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Escape key closes modals
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeVideo(); }
+  });
+
+  // GIF freeze on hover using canvas
+  function initGifFreeze() {
+    document.querySelectorAll('.grid-item img').forEach(img => {
+      if (!img.src.match(/\.gif$/i)) return;
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;';
+      img.parentElement.style.position = 'relative';
+      img.parentElement.appendChild(canvas);
+
+      const freeze = () => {
+        canvas.width = img.naturalWidth || img.offsetWidth;
+        canvas.height = img.naturalHeight || img.offsetHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'block';
+      };
+      const unfreeze = () => { canvas.style.display = 'none'; };
+
+      const item = img.closest('.grid-item');
+      item.addEventListener('mouseenter', freeze);
+      item.addEventListener('mouseleave', unfreeze);
+    });
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('load', initGifFreeze);
+</script>
+</body>
+</html>
