@@ -312,7 +312,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
-    align-items: start;
+    align-items: center;
   }
 
   .about-photo {
@@ -576,20 +576,17 @@
 
     <span id="design-nav" style="position:absolute; top:-80px;"></span>
     <!-- Design item 1 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+    <div class="grid-item design-item reveal" onclick="goToProject('project-1.html')">
+      <img src="caamfest40.webp" alt="CAAMFest 40">
       <div class="design-overlay">
-        <p class="design-overlay-title">Project Title</p>
+        <p class="design-overlay-title">CAAMFest 40</p>
         <p class="design-overlay-type">Design · Brand Identity</p>
       </div>
     </div>
 
     <span id="film-nav" style="position:absolute; top:-80px;"></span>
     <!-- Video item 1 — Aftertaste -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('aftertaste.html')">
       <div class="video-thumb-unified">
         <div class="placeholder-label">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
@@ -608,19 +605,16 @@
     </div>
 
     <!-- Design item 2 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+    <div class="grid-item design-item reveal" onclick="goToProject('project-2.html')">
+      <img src="book_cover_1920x1080.webp" alt="Raw Black Blue">
       <div class="design-overlay">
-        <p class="design-overlay-title">Project Title</p>
-        <p class="design-overlay-type">Design · Campaign</p>
+        <p class="design-overlay-title">Raw Black Blue</p>
+        <p class="design-overlay-type">Design · Editorial</p>
       </div>
     </div>
 
     <!-- Video item 2 — Cantadora Wine -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('cantadora-wine.html')">
       <div class="video-thumb-unified">
         <div class="placeholder-label">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
@@ -638,20 +632,17 @@
       </div>
     </div>
 
-    <!-- Design item 3 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+    <!-- Design item 3 — Vincent Chin -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-3.html')">
+      <img src="vincentchin.webp" alt="Vincent Chin">
       <div class="design-overlay">
-        <p class="design-overlay-title">Project Title</p>
-        <p class="design-overlay-type">Design · Event Branding</p>
+        <p class="design-overlay-title">Vincent Chin</p>
+        <p class="design-overlay-type">Design · Pitch Deck</p>
       </div>
     </div>
 
     <!-- Video item 3 — Great Star Theater -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('great-star-theater.html')">
       <div class="video-thumb-unified">
         <div class="placeholder-label">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
@@ -669,25 +660,19 @@
       </div>
     </div>
 
-    <!-- Design item 4 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+    <!-- Design item 4 — MUMU -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-4.html')">
+      <img src="mumu_front_final.webp" alt="MUMU">
       <div class="design-overlay">
-        <p class="design-overlay-title">Project Title</p>
-        <p class="design-overlay-type">Design · Illustration</p>
+        <p class="design-overlay-title">MUMU</p>
+        <p class="design-overlay-type">Design · Logo</p>
       </div>
     </div>
 
     <!-- Video item 4 — Danny, Danny -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('danny-danny.html')">
       <div class="video-thumb-unified">
-        <div class="placeholder-label">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-          Add thumbnail
-        </div>
+        <img src="dannny.GIF" alt="Danny, Danny">
         <div class="video-play">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
@@ -700,20 +685,17 @@
       </div>
     </div>
 
-    <!-- Design item 5 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+    <!-- Design item 5 — Jasmine Orange -->
+    <div class="grid-item design-item reveal" onclick="goToProject('project-5.html')">
+      <img src="thick_multi_final.webp" alt="Jasmine Orange">
       <div class="design-overlay">
-        <p class="design-overlay-title">Project Title</p>
-        <p class="design-overlay-type">Design · Print</p>
+        <p class="design-overlay-title">Jasmine Orange</p>
+        <p class="design-overlay-type">Design · Logo</p>
       </div>
     </div>
 
     <!-- Design item 6 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="goToProject('project-6.html')">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -725,7 +707,7 @@
     </div>
 
     <!-- Video item 5 — The Dish -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('the-dish.html')">
       <div class="video-thumb-unified">
         <div class="placeholder-label">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
@@ -744,7 +726,7 @@
     </div>
 
     <!-- Design item 7 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="goToProject('project-7.html')">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -756,7 +738,7 @@
     </div>
 
     <!-- Video item 6 — Be Here With You -->
-    <div class="grid-item reveal" onclick="openVideo('YOUTUBE_VIDEO_ID_HERE', 'youtube')">
+    <div class="grid-item reveal" onclick="goToProject('be-here-with-you.html')">
       <div class="video-thumb-unified">
         <div class="placeholder-label">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
@@ -775,7 +757,7 @@
     </div>
 
     <!-- Design item 8 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="goToProject('project-8.html')">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -787,7 +769,7 @@
     </div>
 
     <!-- Design item 9 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="goToProject('project-9.html')">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -799,7 +781,7 @@
     </div>
 
     <!-- Design item 10 -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="goToProject('project-10.html')">
       <div class="placeholder-label">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         Add image here
@@ -817,11 +799,7 @@
 <section id="about">
   <div class="about-grid">
     <div class="about-photo reveal">
-      <!-- Replace with your photo: <img src="anny-photo.jpg" alt="Anny Filippi"> -->
-      <div class="placeholder-label" style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--gray-text); font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gray-mid)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        Add your photo here
-      </div>
+      <img src="anny-photo.jpg" alt="Huan Filippi">
     </div>
     <div class="about-text reveal">
       <p>
@@ -855,6 +833,11 @@
 </div>
 
 <script>
+  // Navigate to project page
+  function goToProject(page) {
+    window.location.href = page;
+  }
+
   // Lightbox
   function openLightbox(el) {
     const img = el.querySelector('img');
@@ -889,6 +872,29 @@
     if (e.key === 'Escape') { closeLightbox(); closeVideo(); }
   });
 
+  // GIF freeze on hover using canvas
+  function initGifFreeze() {
+    document.querySelectorAll('.grid-item img').forEach(img => {
+      if (!img.src.match(/\.gif$/i)) return;
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;';
+      img.parentElement.style.position = 'relative';
+      img.parentElement.appendChild(canvas);
+
+      const freeze = () => {
+        canvas.width = img.naturalWidth || img.offsetWidth;
+        canvas.height = img.naturalHeight || img.offsetHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'block';
+      };
+      const unfreeze = () => { canvas.style.display = 'none'; };
+
+      const item = img.closest('.grid-item');
+      item.addEventListener('mouseenter', freeze);
+      item.addEventListener('mouseleave', unfreeze);
+    });
+  }
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
@@ -900,6 +906,8 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('load', initGifFreeze);
 </script>
 </body>
 </html>
