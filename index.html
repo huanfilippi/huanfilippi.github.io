@@ -613,10 +613,7 @@
 
     <!-- 6. CAAMFest Map -->
     <div class="grid-item design-item reveal" onclick="openLightbox(this)">
-      <div class="placeholder-label">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-        Add image here
-      </div>
+      <img src="map_web.png" alt="CAAMFest Map">
       <div class="design-overlay">
         <p class="design-overlay-title">CAAMFest Map</p>
         <p class="design-overlay-type">Design · Illustration</p>
@@ -661,7 +658,7 @@
     </div>
 
     <!-- 9. Vincent Chin -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="openGallery('vincent')">
       <img src="vincentchin.webp" alt="Vincent Chin">
       <div class="design-overlay">
         <p class="design-overlay-title">Vincent Chin</p>
@@ -806,10 +803,40 @@
     document.body.style.overflow = '';
   }
 
-  // Escape key closes modals
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeLightbox(); closeVideo(); }
-  });
+  // Galleries
+  const galleries = {
+    vincent: [
+      'vincentchin6.png',
+      'vincentchin2.png',
+      'vincentchin6.png',
+      'VINCENT.png',
+      'vincent7.png',
+      'vincent9.png',
+      'vincent11.png',
+      'vinentchin.png',
+    ]
+  };
+
+  function openGallery(name) {
+    const images = galleries[name];
+    const scroll = document.getElementById('gallery-scroll');
+    scroll.innerHTML = '';
+    images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = name;
+      scroll.appendChild(img);
+    });
+    const lb = document.getElementById('gallery-lightbox');
+    lb.scrollTop = 0;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    document.getElementById('gallery-lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
   // GIF freeze on hover using canvas
   function initGifFreeze() {
@@ -848,5 +875,61 @@
 
   window.addEventListener('load', initGifFreeze);
 </script>
+<!-- GALLERY LIGHTBOX -->
+<div class="gallery-lightbox" id="gallery-lightbox">
+  <button class="gallery-close" onclick="closeGallery()">Close ×</button>
+  <div class="gallery-scroll" id="gallery-scroll"></div>
+</div>
+
+<style>
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,17,16,0.97);
+  z-index: 999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  overflow-y: auto;
+}
+.gallery-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.gallery-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 5rem 2rem 4rem;
+  width: 100%;
+  max-width: 900px;
+}
+.gallery-scroll img {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  display: block;
+}
+.gallery-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  z-index: 1000;
+}
+.gallery-close:hover { opacity: 1; }
+</style>
+
 </body>
 </html>
