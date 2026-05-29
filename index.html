@@ -609,8 +609,8 @@
     </div>
 
     <!-- 6. Festival Intro Slides -->
-    <div class="grid-item design-item reveal" onclick="openSlideshow('caamfest')">
-      <img src="thick_multi_final.webp" alt="Festival Intro Slides">
+    <div class="grid-item reveal" onclick="openSlideshow('caamfest')">
+      <img src="thick_multi_final.webp" alt="Festival Intro Slides" style="width:100%; height:100%; object-fit:cover;">
       <div class="design-overlay">
         <p class="design-overlay-title">Festival Intro Slides</p>
         <p class="design-overlay-type">Design · Deck</p>
@@ -894,30 +894,26 @@
 
   function openSlideshow(name) {
     currentSlideshow = slideshows[name];
-    currentSlide = 0;
-    updateSlide();
-    document.getElementById('slideshow-modal').classList.add('active');
+    const inner = document.getElementById('hovergrid-inner');
+    inner.innerHTML = '';
+    currentSlideshow.forEach(src => {
+      const div = document.createElement('div');
+      div.className = 'hovergrid-item';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = name;
+      div.appendChild(img);
+      inner.appendChild(div);
+    });
+    const modal = document.getElementById('hovergrid-modal');
+    modal.scrollTop = 0;
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeSlideshow() {
-    document.getElementById('slideshow-modal').classList.remove('active');
+    document.getElementById('hovergrid-modal').classList.remove('active');
     document.body.style.overflow = '';
-  }
-
-  function slideshowNav(dir) {
-    currentSlide = (currentSlide + dir + currentSlideshow.length) % currentSlideshow.length;
-    updateSlide();
-  }
-
-  function updateSlide() {
-    const img = document.getElementById('slideshow-img');
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = currentSlideshow[currentSlide];
-      img.style.opacity = '1';
-    }, 150);
-    document.getElementById('slideshow-counter').textContent = (currentSlide + 1) + ' / ' + currentSlideshow.length;
   }
 
   document.addEventListener('keydown', e => {
@@ -997,48 +993,32 @@
 .gallery-close:hover { opacity: 1; }
 </style>
 
-<!-- HORIZONTAL SLIDESHOW -->
-<div class="slideshow-modal" id="slideshow-modal">
-  <button class="slideshow-close" onclick="closeSlideshow()">Close ×</button>
-  <button class="slideshow-prev" onclick="slideshowNav(-1)">&#8592;</button>
-  <button class="slideshow-next" onclick="slideshowNav(1)">&#8594;</button>
-  <div class="slideshow-img-wrap">
-    <img id="slideshow-img" src="" alt="">
-  </div>
-  <p class="slideshow-counter" id="slideshow-counter"></p>
+<!-- HOVER FILMSTRIP GALLERY -->
+<div class="hovergrid-modal" id="hovergrid-modal">
+  <button class="hovergrid-close" onclick="closeSlideshow()">Close ×</button>
+  <div class="hovergrid-inner" id="hovergrid-inner"></div>
 </div>
 
 <style>
-.slideshow-modal {
+.hovergrid-modal {
   position: fixed;
   inset: 0;
   background: rgba(10,10,10,0.97);
   z-index: 999;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
-.slideshow-modal.active {
+.hovergrid-modal.active {
   opacity: 1;
   pointer-events: all;
 }
-.slideshow-img-wrap {
-  width: 90vw;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.slideshow-img-wrap img {
-  max-width: 90vw;
-  max-height: 85vh;
-  object-fit: contain;
-  transition: opacity 0.2s ease;
-}
-.slideshow-close {
+.hovergrid-close {
   position: fixed;
   top: 1.5rem;
   right: 2rem;
@@ -1052,39 +1032,38 @@
   transition: opacity 0.2s;
   z-index: 1000;
 }
-.slideshow-close:hover { opacity: 1; }
-.slideshow-prev, .slideshow-next {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  font-size: 1.5rem;
-  width: 52px;
-  height: 52px;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+.hovergrid-close:hover { opacity: 1; }
+.hovergrid-inner {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  gap: 6px;
+  padding: 2rem 3rem;
+  height: 100vh;
+  width: max-content;
 }
-.slideshow-prev { left: 1.5rem; }
-.slideshow-next { right: 1.5rem; }
-.slideshow-prev:hover, .slideshow-next:hover {
-  border-color: #fff;
-  background: rgba(255,255,255,0.1);
+.hovergrid-item {
+  height: 55vh;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.75;
 }
-.slideshow-counter {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255,255,255,0.5);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  font-family: var(--sans);
+.hovergrid-inner:hover .hovergrid-item {
+  opacity: 0.5;
+  height: 45vh;
+}
+.hovergrid-inner:hover .hovergrid-item:hover {
+  height: 80vh;
+  opacity: 1;
+}
+.hovergrid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 </style>
 
