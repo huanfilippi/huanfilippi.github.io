@@ -609,7 +609,7 @@
     </div>
 
     <!-- 6. Festival Intro Slides -->
-    <div class="grid-item design-item reveal" onclick="openLightbox(this)">
+    <div class="grid-item design-item reveal" onclick="openSlideshow('caamfest')">
       <img src="thick_multi_final.webp" alt="Festival Intro Slides">
       <div class="design-overlay">
         <p class="design-overlay-title">Festival Intro Slides</p>
@@ -857,6 +857,76 @@
     });
   }
 
+  // Slideshows
+  const slideshows = {
+    caamfest: [
+      '001-CAAMFest_Hero_Image__1.webp',
+      '002-Land_Acknowledgement.webp',
+      '004-Opening_Night_Films__Third_Act.webp',
+      '006-Donate_to_CAAM.webp',
+      '019-Health___Safety.webp',
+      '020-Public_Media.webp',
+      '021-AANHPI_Programs.webp',
+      '024-CENTERPIECE_DOCUMENTARY__LOVE__CHAOS__KIN.webp',
+      '027-Volunteer_Thank_you.webp',
+      '028-Media_Fund.webp',
+      '030-FILMAKER_SUPPORT.webp',
+      '031-COMMUNITY_GUIDELINES.webp',
+      '034-Centerpiece_documentary.webp',
+      '037-CAAMFEST_COM.webp',
+      '038-FOLLOW_US.webp',
+      '039-CAAM_CONNECT.webp',
+      '041-50th_Anniversary_of_Vietnam.webp',
+      '042-Building_Bridges_Documentary_Fund_.webp',
+      '052-CENTERPIECE_DOCUMENTARY_.webp',
+      '053-CLOSING_NIGHT__Yellow_Face.webp',
+      '010-Grand_Sponsor.webp',
+      '011-Premier_Sponsors.webp',
+      '012-Supporting_Sponsors.webp',
+      '013-Foundations__Government__and_Public_Support.webp',
+      '014-Media_Sponsors.webp',
+      '015-In-Kind_Donors__Venues___Hospitality.webp',
+      '016-In-Kind_Donors__Services_and_F_B.webp',
+    ]
+  };
+  let currentSlideshow = [];
+  let currentSlide = 0;
+
+  function openSlideshow(name) {
+    currentSlideshow = slideshows[name];
+    currentSlide = 0;
+    updateSlide();
+    document.getElementById('slideshow-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSlideshow() {
+    document.getElementById('slideshow-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function slideshowNav(dir) {
+    currentSlide = (currentSlide + dir + currentSlideshow.length) % currentSlideshow.length;
+    updateSlide();
+  }
+
+  function updateSlide() {
+    const img = document.getElementById('slideshow-img');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = currentSlideshow[currentSlide];
+      img.style.opacity = '1';
+    }, 150);
+    document.getElementById('slideshow-counter').textContent = (currentSlide + 1) + ' / ' + currentSlideshow.length;
+  }
+
+  document.addEventListener('keydown', e => {
+    const ssActive = document.getElementById('slideshow-modal').classList.contains('active');
+    if (e.key === 'Escape') { closeLightbox(); closeVideo(); closeGallery(); closeSlideshow(); }
+    if (e.key === 'ArrowLeft') ssActive ? slideshowNav(-1) : galleryNav(-1);
+    if (e.key === 'ArrowRight') ssActive ? slideshowNav(1) : galleryNav(1);
+  });
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
@@ -925,6 +995,97 @@
   z-index: 1000;
 }
 .gallery-close:hover { opacity: 1; }
+</style>
+
+<!-- HORIZONTAL SLIDESHOW -->
+<div class="slideshow-modal" id="slideshow-modal">
+  <button class="slideshow-close" onclick="closeSlideshow()">Close ×</button>
+  <button class="slideshow-prev" onclick="slideshowNav(-1)">&#8592;</button>
+  <button class="slideshow-next" onclick="slideshowNav(1)">&#8594;</button>
+  <div class="slideshow-img-wrap">
+    <img id="slideshow-img" src="" alt="">
+  </div>
+  <p class="slideshow-counter" id="slideshow-counter"></p>
+</div>
+
+<style>
+.slideshow-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.97);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.slideshow-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.slideshow-img-wrap {
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slideshow-img-wrap img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+.slideshow-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  z-index: 1000;
+}
+.slideshow-close:hover { opacity: 1; }
+.slideshow-prev, .slideshow-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 1.5rem;
+  width: 52px;
+  height: 52px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.slideshow-prev { left: 1.5rem; }
+.slideshow-next { right: 1.5rem; }
+.slideshow-prev:hover, .slideshow-next:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.slideshow-counter {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  font-family: var(--sans);
+}
 </style>
 
 </body>
